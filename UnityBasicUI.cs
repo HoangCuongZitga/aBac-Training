@@ -15,3 +15,18 @@ void LoadImages()
     {
         listSprites = Resources.LoadAll("ImageOfItems", typeof(Sprite)).Cast<Sprite>().ToList();
     }
+
+//using when gameObject is a button or UI elements
+using UnityEngine.EventSystems;
+public class ButtonController : MonoBehaviour, IPointerEnterHandler
+{
+public void OnPointerEnter(PointerEventData eventData)
+    {
+        
+    }
+}
+
+// using when gameObject is a sprite or not a UI element
+void OnMouseOver()
+    {
+    }
