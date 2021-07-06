@@ -5,5 +5,6 @@ using UnityEngine.UI;
 
 public class ItemCarryData
 {
-    [SerializeField] Image itemImage;
+    public string itemName;
+    public Sprite itemImage;
 }
