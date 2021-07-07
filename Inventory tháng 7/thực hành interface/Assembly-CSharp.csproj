@@ -64,6 +64,7 @@
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\SnappingDemo.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\07 Refreshing\CellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\01 Simple Demo\CellView.cs" />
+     <Compile Include="Assets\Scripts\Popup\Popup.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\11 Pull Down Refresh\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\09 Cell Events\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\03 Selection Demo\SelectionDemo.cs" />
@@ -87,20 +88,19 @@
      <Compile Include="Assets\Scripts\Inventory\Item.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Plugins\IEnhancedScrollerDelegate.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\10 Grid Simulation\Data.cs" />
-     <Compile Include="Assets\Scripts\ItemCarry\ScrollerItemCarryController.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\SlotController.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\02 Multiple Cell Types\CellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\12 Nested Scrollers\ScrollRectEx.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\10 Grid Simulation\RowCellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\SlotData.cs" />
-     <Compile Include="Assets\Scripts\ItemCarry\ItemCarry.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\07 Refreshing\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\12 Nested Scrollers\MasterData.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\SlotCellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\09 Cell Events\Data.cs" />
-     <Compile Include="Assets\Scripts\ItemCarry\ItemCarryData.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\08 View Driven Cell Sizes\CellView.cs" />
+     <Compile Include="Assets\Scripts\ItemInterface.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\02 Multiple Cell Types\MultipleCellTypesDemo.cs" />
+     <Compile Include="Assets\Scripts\ItemController.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\12 Nested Scrollers\MasterCellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\09 Cell Events\CellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\07 Refreshing\Data.cs" />
@@ -336,7 +336,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -684,94 +684,94 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Animation.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.InternalAPIEngineBridge.001">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.PixelPerfect">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Tilemap.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
  </Reference>
  <Reference Include="PsdPlugin">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.IK.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.IK.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Psdimporter.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Path.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.InternalAPIEditorBridge.001">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PlasticSCM.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Mathematics">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.IK.Runtime">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.IK.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Animation.Triangle.Runtime">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Animation.Runtime">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.PixelPerfect.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Mathematics.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Common.Runtime">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.SpriteShape.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Common.Editor">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.SpriteShape.Runtime">
- <HintPath>C:/Zitga/ABac-training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+ <HintPath>D:/Github Repos/ABac-Training/Inventory tháng 7/thực hành interface/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

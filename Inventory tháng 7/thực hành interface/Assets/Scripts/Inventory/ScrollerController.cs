@@ -6,27 +6,25 @@ using EnhancedUI.EnhancedScroller;
 
 public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
 {
-    private List<ItemData> _data;
+    [SerializeField] private Popup popup;
+    public List<Item> listItems;
+    private List<Sprite> _sprites;
+    public List<ItemData> data;
     public EnhancedScroller myScroller;
     public Item animalCellViewPrefab;
-    private List<Sprite> _sprites;
 
-    void Start()
+    void Awake()
     {
-
         _sprites = Resources.LoadAll<Sprite>("Item_Prototype2").ToList();
-        
-        
-        _data = new List<ItemData>();
+        data = new List<ItemData>();
 
-        string[] itemname = new string[] {"item1", "item2", "item3", "item4", "item5", "item6"};
-        
         for (int i = 0; i < _sprites.Count; i++)
         {
-            _data.Add(new ItemData()
+            data.Add(new ItemData()
             {
-                nameItem = itemname[i],
-                itemImage = _sprites[i]
+                nameItem = _sprites[i].name,
+                isEquipped = false,
+                itemType = _sprites[i].name.Substring(0, _sprites[i].name.Length - 1)
             });
         }
 
@@ -34,9 +32,47 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
         myScroller.ReloadData();
     }
 
+    public void ReLoadData(Item item)
+    {
+        if (item != null && item.itemData.isEquipped == true)
+        {
+            _sprites = _sprites.Where(e => e.name != item.itemData.nameItem).ToList();
+            data.Remove(item.itemData);
+            listItems.Remove(item);
+            Debug.Log("Is Equipped !!");
+        }
+
+        if (item != null && item.itemData.isEquipped == false)
+        {
+            Sprite sprite = Resources.Load<Sprite>("Item_Prototype2/" + item.itemData.nameItem);
+
+            Item cellView = myScroller.GetCellView(animalCellViewPrefab) as Item;
+            cellView.SetData(item.itemData);
+            cellView.SetPopup(popup);
+            cellView.SetSprite(sprite);
+            listItems.Add(cellView);
+            _sprites.Add(sprite);
+            data.Add(item.itemData);
+            Debug.Log("NO !! Equipped !!");
+        }
+
+        // data = new List<ItemData>();
+        // for (int i = 0; i < _sprites.Count; i++)
+        // {
+        //     data.Add(new ItemData()
+        //     {
+        //         nameItem = _sprites[i].name,
+        //         isEquipped = false,
+        //         itemType = _sprites[i].name.Substring(0, _sprites[i].name.Length - 1)
+        //     });
+        // }
+     //   myScroller.Delegate = this;
+        myScroller.ReloadData();
+    }
+
     public int GetNumberOfCells(EnhancedScroller scroller)
     {
-        return _data.Count;
+        return data.Count;
     }
 
     public float GetCellViewSize(EnhancedScroller scroller, int dataIndex)
@@ -44,12 +80,19 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
         return 100f;
     }
 
-    public EnhancedScrollerCellView GetCellView(EnhancedScroller scroller, int
-        dataIndex, int cellIndex)
+    public EnhancedScrollerCellView GetCellView(EnhancedScroller scroller, int dataIndex, int cellIndex)
     {
-        Item cellView = scroller.GetCellView(animalCellViewPrefab) as
-            Item;
-        cellView.SetData(_data[dataIndex]);
+        Item cellView = scroller.GetCellView(animalCellViewPrefab) as Item;
+        cellView.SetData(data[dataIndex]);
+        cellView.SetPopup(popup);
+        cellView.SetSprite(_sprites[dataIndex]);
+        listItems.Add(cellView);
         return cellView;
+    }
+
+
+    public void Change()
+    {
+        
     }
 }

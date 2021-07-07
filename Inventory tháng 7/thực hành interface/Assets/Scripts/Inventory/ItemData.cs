@@ -8,5 +8,6 @@ using UnityEngine.UI;
 public class ItemData
 {
     public string nameItem;
-    public Sprite itemImage;
+    public string itemType;
+    public bool isEquipped;
 }
