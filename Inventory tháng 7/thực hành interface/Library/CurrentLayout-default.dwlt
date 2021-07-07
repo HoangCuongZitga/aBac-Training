@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1001
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -69,10 +69,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< Updated upstream
     width: 1240
     height: 951
   m_MinSize: {x: 201, y: 421}
   m_MaxSize: {x: 4001, y: 8021}
+=======
+    width: 1298
+    height: 957
+  m_MinSize: {x: 201, y: 342}
+  m_MaxSize: {x: 4001, y: 8042}
+>>>>>>> Stashed changes
   vertical: 1
   controlID: 130
 --- !u!114 &4
@@ -96,8 +103,13 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1920
+<<<<<<< Updated upstream
     height: 1001
   m_MinSize: {x: 875, y: 300}
+=======
+    height: 1007
+  m_MinSize: {x: 875, y: 521}
+>>>>>>> Stashed changes
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -226,7 +238,11 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
+<<<<<<< Updated upstream
   controlID: 66
+=======
+  controlID: 26
+>>>>>>> Stashed changes
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -408,13 +424,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< Updated upstream
     - Assets/Resources/Item_Prototype2
+=======
+    - Assets/Scripts/ItemCarry
+>>>>>>> Stashed changes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 61
   m_LastFolders:
+<<<<<<< Updated upstream
   - Assets/Resources/Item_Prototype2
+=======
+  - Assets/Scripts/ItemCarry
+>>>>>>> Stashed changes
   m_LastFoldersGridSize: 61
   m_LastProjectPath: "D:\\Github Repos\\ABac-Training\\Inventory th\xE1ng 7\\th\u1EF1c
     h\xE0nh interface"
@@ -422,9 +446,15 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< Updated upstream
     m_SelectedIDs: 8a4e0000
     m_LastClickedID: 20106
     m_ExpandedIDs: 00000000b6430000b8430000c0430000c44300000448000000ca9a3b
+=======
+    m_SelectedIDs: 4e430000
+    m_LastClickedID: 17230
+    m_ExpandedIDs: 000000003e4300004043000000ca9a3b
+>>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -452,7 +482,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< Updated upstream
     m_ExpandedIDs: 00000000b6430000b8430000
+=======
+    m_ExpandedIDs: 000000003e43000040430000
+>>>>>>> Stashed changes
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -744,9 +778,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< Updated upstream
       m_SelectedIDs: c41bffff
       m_LastClickedID: -58428
       m_ExpandedIDs: d41bffff7e22ffff8635fffffe36fffffa4afffffe59ffff6e5fffff8c5ffffffafaffff124300001c430000ac9600000a9700002e970000
+=======
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 3efbffff
+>>>>>>> Stashed changes
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
