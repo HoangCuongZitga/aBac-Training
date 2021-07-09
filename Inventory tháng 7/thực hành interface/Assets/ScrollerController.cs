@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,15 @@ using EnhancedUI.EnhancedScroller;
 public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
 {
     [SerializeField] private DataManager dataManager;
-    [SerializeField] private Popup _popup;
     [SerializeField] private EnhancedScroller myScroller;
     [SerializeField] private ItemView cellViewPrefab;
     private List<Item> _data;
     private List<Sprite> _sprites;
 
+    private Action<Item> ItemOnClickDelegate;
+
+
+    // ................................ PRIVATE METHODS ......................................
     void Start()
     {
         _data = new List<Item>();
@@ -21,7 +25,6 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
         myScroller.ReloadData();
     }
 
-    // ................................ MY METHODS ......................................
     void LoadData()
     {
         // load data from database
@@ -46,11 +49,13 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
         }
     }
 
-    void ItemOnClick(Item item)
+
+    // ................................ PUBLIC METHODS ......................................
+    public void SetItemOnClickDelegate(Action<Item> method)
     {
-        _popup.ShowItemIsChoosing(item);
-        Debug.Log(item.itemName);
+        ItemOnClickDelegate = method;
     }
+
 
     public void RemoveItem(Item item)
     {
@@ -66,7 +71,8 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
         myScroller.ReloadData();
         myScroller.JumpToDataIndex(_data.IndexOf(item));
     }
-    // ................................ MY METHODS ......................................
+    
+    // ................................ DEFAULT METHODS ......................................
 
     public int GetNumberOfCells(EnhancedScroller scroller)
     {
@@ -82,7 +88,8 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
     {
         ItemView cellView = scroller.GetCellView(cellViewPrefab) as ItemView;
         cellView.SetData(_data[dataIndex]);
-        cellView.SetActionOnClick(ItemOnClick);
+        // cellView.SetActionOnClick(ItemOnClick);
+        cellView.SetActionOnClick(ItemOnClickDelegate);
         return cellView;
     }
 }

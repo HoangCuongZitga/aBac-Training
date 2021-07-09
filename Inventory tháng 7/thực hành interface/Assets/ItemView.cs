@@ -14,7 +14,7 @@ public class ItemView : EnhancedScrollerCellView
     [SerializeField] private Button itemButton;
     private Item itemData;
 
-    public Action<Item> onClick;
+    private Action<Item> onClick;
 
     private void Start()
     {
@@ -30,7 +30,8 @@ public class ItemView : EnhancedScrollerCellView
     {
         itemData = item;
         itemName.text = "Name: " + item.itemName;
-        itemID.text = "ID: " + item.itemID.ToString();
+        itemID.text = "ID: " + item.itemID;
+        //  change type if ...
         if(item.itemName.Any(c=>char.IsDigit(c))) itemImage.sprite = Resources.Load<Sprite>("Item_Prototype2/" + item.itemName);
        else itemImage.sprite = Resources.Load<Sprite>("Equipped/" + item.itemName);
     }
@@ -38,5 +39,10 @@ public class ItemView : EnhancedScrollerCellView
     public Item GetData()
     {
         return itemData;
+    }
+
+    public void HideButton()
+    {
+        itemButton.enabled = false;
     }
 }
