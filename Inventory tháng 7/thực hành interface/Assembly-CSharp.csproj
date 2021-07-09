@@ -53,9 +53,10 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\EnhancedScroller v2\Plugins\SmallList.cs" />
-     <Compile Include="Assets\Database.cs" />
+     <Compile Include="Assets\PlayerInventory.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\01 Simple Demo\SimpleDemo.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\Main Menu\MainMenu.cs" />
+     <Compile Include="Assets\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\10 Grid Simulation\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\12 Nested Scrollers\DetailCellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\04 Jump To Demo\CellView.cs" />
@@ -110,10 +111,11 @@
      <Compile Include="Assets\EnhancedScroller v2\Demos\11 Pull Down Refresh\CellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\03 Selection Demo\InventoryCellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\10 Grid Simulation\CellView.cs" />
-     <Compile Include="Assets\Controller.cs" />
+     <Compile Include="Assets\Scripts\Test Playerefs\ControllerPlayerRefs.cs" />
      <None Include="Assets\EnhancedScroller v2\upgrading from 1.x to 2.x.txt" />
      <None Include="Assets\EnhancedScroller v2\ChangeLog.txt" />
      <None Include="Assets\EnhancedScroller v2\Tutorials\readme.txt" />
+     <None Include="Assets\JsonDotNet\link.xml" />
      <None Include="Assets\EnhancedScroller v2\readme.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

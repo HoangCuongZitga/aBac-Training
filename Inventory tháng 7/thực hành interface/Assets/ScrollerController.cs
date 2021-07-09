@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using EnhancedUI.EnhancedScroller;
+using Newtonsoft.Json;
 
 public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
 {
-    [SerializeField] private DataManager dataManager;
     [SerializeField] private EnhancedScroller myScroller;
     [SerializeField] private ItemView cellViewPrefab;
     private List<Item> _data;
     private List<Sprite> _sprites;
-
+    [SerializeField] private PlayerInventory _database;
     private Action<Item> ItemOnClickDelegate;
 
 
@@ -28,13 +28,18 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
     void LoadData()
     {
         // load data from database
-        if (dataManager.GetDatabase() != null)
+        if (_database.data.listItemsAreNotCarried != null)
         {
-            _data = dataManager.GetDatabase();
+            _data = _database.data.listItemsAreNotCarried;
             return;
         }
 
         // load all item from resource
+        LoadAllItemDefaults();
+    }
+
+    void LoadAllItemDefaults()
+    {
         _sprites = Resources.LoadAll<Sprite>("Item_Prototype2").ToList();
 
         for (int i = 0; i < _sprites.Count; i++)
@@ -49,6 +54,15 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
         }
     }
 
+    IEnumerator ReloadData(Item item)
+    {
+        yield return new WaitForEndOfFrame();
+        myScroller.ReloadData();
+        if (item != null)
+        {
+            myScroller.JumpToDataIndex(_data.IndexOf(item));
+        }
+    }
 
     // ................................ PUBLIC METHODS ......................................
     public void SetItemOnClickDelegate(Action<Item> method)
@@ -61,17 +75,20 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
     {
         item.isCarried = true;
         _data.Remove(item);
-        myScroller.ReloadData();
+        StartCoroutine(ReloadData(item));
     }
 
     public void AddItem(Item item)
     {
         item.isCarried = false;
         _data.Add(item);
-        myScroller.ReloadData();
-        myScroller.JumpToDataIndex(_data.IndexOf(item));
+        StartCoroutine(ReloadData(item));
     }
-    
+
+    public void SetDatabase(PlayerInventory database)
+    {
+        this._database = database;
+    }
     // ................................ DEFAULT METHODS ......................................
 
     public int GetNumberOfCells(EnhancedScroller scroller)
@@ -88,8 +105,18 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
     {
         ItemView cellView = scroller.GetCellView(cellViewPrefab) as ItemView;
         cellView.SetData(_data[dataIndex]);
-        // cellView.SetActionOnClick(ItemOnClick);
         cellView.SetActionOnClick(ItemOnClickDelegate);
         return cellView;
+    }
+
+    public List<Item> GetItemIsNotCarried()
+    {
+        List<Item> itemsAreNotCarried = new List<Item>();
+
+        _data.ForEach(e =>
+        {
+            if (e.isCarried == false) itemsAreNotCarried.Add(e);
+        });
+        return itemsAreNotCarried;
     }
 }

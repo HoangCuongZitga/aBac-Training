@@ -2,17 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class CarriesItemController : MonoBehaviour
 {
-    [SerializeField] private DataManager _dataManager;
     [SerializeField] private ScrollerController _scrollerController;
     [SerializeField] private ItemView itemCarriedPrefab;
     private List<Item> _data;
     private List<ItemView> listItemView;
     private List<Sprite> _sprites;
-
+    private PlayerInventory _database;
     private Action<Item> ItemOnClickDelegate;
 
 //....................................... PRIVATE METHODS .......................................
@@ -25,16 +25,26 @@ public class CarriesItemController : MonoBehaviour
 
     void LoadData()
     {
-        // load data from database
-        if (_dataManager.GetDatabase() != null)
-        {
-            _data = _dataManager.GetDatabase();
-            return;
-        }
-
         // load all item from resource
-        _sprites = Resources.LoadAll<Sprite>("Equipped").ToList();
+        LoadAllItemDefaults();
 
+        // load data from database
+        if (_database.data.listItemsAreCarried != null)
+        {
+            foreach (Item item in _database.data.listItemsAreCarried)
+            {
+                if (_data.Contains(item) == false)
+                {
+                    _data.Add(item);
+                    listItemView.Find(e => e.GetData().itemType == item.itemType).SetData(item);
+                }
+            }
+        }
+    }
+
+    void LoadAllItemDefaults()
+    {
+        _sprites = Resources.LoadAll<Sprite>("Equipped").ToList();
         for (int i = 0; i < _sprites.Count; i++)
         {
             Item newItem = new Item()
@@ -48,11 +58,9 @@ public class CarriesItemController : MonoBehaviour
             ItemView item = Instantiate(itemCarriedPrefab, transform);
             listItemView.Add(item);
             item.SetData(newItem);
-            // item.SetActionOnClick(ItemOnClick);
             item.SetActionOnClick(ItemOnClickDelegate);
         }
     }
-
 
 //....................................... PUBLIC METHODS .......................................
     public void SetItemOnClickDelegate(Action<Item> method)
@@ -83,5 +91,21 @@ public class CarriesItemController : MonoBehaviour
             isCarried = false
         };
         xxx.SetData(newItem);
+    }
+
+    public void SetDatabase(PlayerInventory database)
+    {
+        this._database = database;
+    }
+
+    public List<Item> GetItemIsCarried()
+    {
+        List<Item> itemsAreCarried = new List<Item>();
+
+        listItemView.ForEach(e =>
+        {
+            if (e.GetData().isCarried == true) itemsAreCarried.Add(e.GetData());
+        });
+        return itemsAreCarried;
     }
 }

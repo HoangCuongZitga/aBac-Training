@@ -6,26 +6,23 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    private Database database;
+    private PlayerInventory database;
 
     private void Awake()
     {
-        database = new Database();
+        database = new PlayerInventory();
         LoadDataFromJson();
     }
 
     void LoadDataFromJson()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
+        string path = Application.dataPath + "/savefile.json";
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            database = JsonUtility.FromJson<Database>(json);
+            database = JsonUtility.FromJson<PlayerInventory>(json);
         }
     }
 
-    public List<Item> GetDatabase()
-    {
-        return database.listItem;
-    }
+  
 }
