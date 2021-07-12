@@ -40,6 +40,7 @@ public class CarriesItemController : MonoBehaviour
                     if (itemView != null)
                     {
                         itemView.SetData(item);
+                        itemView.ShowButton();
                     }
                 }
             }
@@ -64,6 +65,7 @@ public class CarriesItemController : MonoBehaviour
             listItemView.Add(item);
             item.SetData(newItem);
             item.SetActionOnClick(ItemOnClickDelegate);
+            item.HideButton();
         }
     }
 
@@ -79,21 +81,29 @@ public class CarriesItemController : MonoBehaviour
 
         //replace item if it's the same type
         if (xxx.GetData().itemName.Any(c => char.IsDigit(c))) _scrollerController.AddItem(xxx.GetData());
-
         xxx.SetData(item);
+        xxx.ShowButton();
     }
 
     public void RemoveItem(Item item)
     {
         ItemView xxx = listItemView.Find(e => e.GetData().itemType == item.itemType);
+        if (xxx == null) return;
         Item newItem = new Item()
         {
             itemID = 0,
             itemName = item.itemType,
             itemType = item.itemType,
-            isCarried = false
+            isCarried = false,
+            itemLevel = 0
         };
         xxx.SetData(newItem);
+        xxx.HideButton();
+    }
+
+    public void RemoveListItems(List<Item> listitem)
+    {
+        listitem.ForEach(e => { RemoveItem(e); });
     }
 
     public void SetDatabase(PlayerInventory database)

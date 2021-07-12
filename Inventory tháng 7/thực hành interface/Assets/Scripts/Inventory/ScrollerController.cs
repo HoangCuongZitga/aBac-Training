@@ -8,12 +8,12 @@ using Newtonsoft.Json;
 
 public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
 {
-    [SerializeField] private EnhancedScroller myScroller;
-    [SerializeField] private ItemView cellViewPrefab;
+    [SerializeField] internal EnhancedScroller myScroller;
+    [SerializeField] internal ItemView cellViewPrefab;
     private List<Item> _data;
     private List<Sprite> _sprites;
     [SerializeField] private PlayerInventory _database;
-    private Action<Item> ItemOnClickDelegate;
+    internal Action<Item> ItemOnClickDelegate;
 
 
     // ................................ PRIVATE METHODS ......................................
@@ -27,36 +27,14 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
 
     void LoadData()
     {
-        // load all item from resource
-        LoadAllItemDefaults();
-        // load data from database
-        if (_database.data.listItemsAreCarried.Count != 0)
-        {
-            foreach (Item item in _database.data.listItemsAreCarried)
+            foreach (Item item in _database.data.listItemsAreNotCarried)
             {
-                _data = _data.Where(e => e.itemName != item.itemName).ToList();
+             _data.Add(item);
             }
             myScroller.ReloadData();
-        }
     }
 
-    void LoadAllItemDefaults()
-    {
-        _sprites = Resources.LoadAll<Sprite>("Item_Prototype2").ToList();
-
-        for (int i = 0; i < _sprites.Count; i++)
-        {
-            Item newItem = new Item()
-            {
-                itemID = i,
-                itemName = _sprites[i].name,
-                itemType = _sprites[i].name.Substring(0, _sprites[i].name.Length - 1),
-                itemLevel = 0
-            };
-            _data.Add(newItem);
-        }
-    }
-
+    
     IEnumerator ReloadData(Item item)
     {
         yield return new WaitForEndOfFrame();

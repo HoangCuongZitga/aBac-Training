@@ -1,25 +1,53 @@
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using UnityEngine;
 
 public class PlayerInventoryData
 {
     public List<Item> listItemsAreCarried;
+    public List<Item> listItemsAreNotCarried;
 }
 
 public class PlayerInventory
 {
     public PlayerInventoryData data;
+    private List<Sprite> _sprites;
 
     public PlayerInventory()
     {
-        data = JsonConvert.DeserializeObject<PlayerInventoryData>(PlayerPrefs.GetString("database"));
+        _sprites = Resources.LoadAll<Sprite>("Item_Prototype2").ToList();
+        data = new PlayerInventoryData();
 
-        if (data == null)
+        string database = PlayerPrefs.GetString("database");
+        if (database != "")
         {
-            data = new PlayerInventoryData();
-            data.listItemsAreCarried = new List<Item>();
+            data = JsonConvert.DeserializeObject<PlayerInventoryData>(PlayerPrefs.GetString("database"));
         }
+        else
+        {
+            LoadAllItemDefaults();
+        }
+    }
+
+    void LoadAllItemDefaults()
+    {
+        data.listItemsAreCarried = new List<Item>();
+        data.listItemsAreNotCarried = new List<Item>();
+        for (int i = 0; i < _sprites.Count; i++)
+        {
+            Item newItem = new Item()
+            {
+                itemID = i,
+                itemName = _sprites[i].name,
+                itemType = _sprites[i].name.Substring(0, _sprites[i].name.Length - 1),
+                itemLevel = 1,
+                isCarried = false
+            };
+            data.listItemsAreNotCarried.Add(newItem);
+        }
+
+        Debug.Log(data.listItemsAreNotCarried.Count);
     }
 
     public void Save()
@@ -29,23 +57,29 @@ public class PlayerInventory
 
     public void AddItem(Item item)
     {
-     
-
         data.listItemsAreCarried.Add(item);
+        if (data.listItemsAreNotCarried.Contains(item))
+            data.listItemsAreNotCarried.Remove(item);
         Save();
     }
 
     public void RemoveItem(Item item)
     {
+        data.listItemsAreNotCarried.Add(item);
+        if (data.listItemsAreCarried.Contains(item))
             data.listItemsAreCarried.Remove(item);
-
+        Save();
     }
 
-
-    private bool ItemIsExistOnList(Item item, List<Item> list)
+    public void RemoveListItems(List<Item> listitem)
     {
-        Item itemIsChoosing = list.Find(e => e.itemName == item.itemName);
-        if (itemIsChoosing == null) return false;
-        return true;
+        foreach (Item item in listitem)
+        {
+            if (data.listItemsAreCarried.Contains(item))
+            {
+                data.listItemsAreCarried.Remove(item);
+            }
+        }
+        Save();
     }
 }

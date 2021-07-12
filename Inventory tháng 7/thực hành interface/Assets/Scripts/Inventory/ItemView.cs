@@ -13,8 +13,8 @@ public class ItemView : EnhancedScrollerCellView
     [SerializeField] private Text itemLevel;
     [SerializeField] private Image itemImage;
     [SerializeField] private Button itemButton;
-    private Item itemData;
 
+    private Item itemData;
     private Action<Item> onClick;
 
     private void Start()
@@ -46,5 +46,9 @@ public class ItemView : EnhancedScrollerCellView
     public void HideButton()
     {
         itemButton.enabled = false;
+    }
+    public void ShowButton()
+    {
+        itemButton.enabled = true;
     }
 }

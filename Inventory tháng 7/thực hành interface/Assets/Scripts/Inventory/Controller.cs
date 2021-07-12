@@ -8,10 +8,10 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField] private Popup _popup;
-    [SerializeField] private ScrollerController _scrollerController;
-    [SerializeField] private CarriesItemController _carriesItemController;
-    [SerializeField] private PlayerInventory _database;
+    [SerializeField] internal ScrollerController _scrollerController;
+    [SerializeField] internal CarriesItemController _carriesItemController;
+    [SerializeField] internal Popup _popup;
+    [SerializeField] internal PlayerInventory _database;
 
 
     private void Awake()
@@ -26,18 +26,18 @@ public class Controller : MonoBehaviour
 
 
     // ................................ DELEGATE METHODS ..................................
-    void SetDatabase()
+    public void SetDatabase()
     {
         _scrollerController.SetDatabase(_database);
         _carriesItemController.SetDatabase(_database);
     }
 
-    void ShowPopup(Item item)
+    public virtual void ShowPopup(Item item)
     {
         _popup.ShowItemIsChoosing(item);
     }
 
-    void Equip(Item item)
+    public virtual void Equip(Item item)
     {
         _scrollerController.RemoveItem(item);
         _carriesItemController.AddItem(item);
@@ -45,7 +45,7 @@ public class Controller : MonoBehaviour
         SaveData();
     }
 
-    void UnEquip(Item item)
+    public virtual void UnEquip(Item item)
     {
         _scrollerController.AddItem(item);
         _carriesItemController.RemoveItem(item);
@@ -53,14 +53,12 @@ public class Controller : MonoBehaviour
         SaveData();
     }
 
-    void LoadData()
+    public void LoadData()
     {
-        string data = PlayerPrefs.GetString("database");
         _database = new PlayerInventory();
-        Debug.Log(data);
     }
 
-    void SaveData()
+    public void SaveData()
     {
         _database.Save();
     }
