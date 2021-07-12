@@ -29,14 +29,18 @@ public class CarriesItemController : MonoBehaviour
         LoadAllItemDefaults();
 
         // load data from database
-        if (_database.data.listItemsAreCarried != null)
+        if (_database.data.listItemsAreCarried.Count != 0)
         {
             foreach (Item item in _database.data.listItemsAreCarried)
             {
                 if (_data.Contains(item) == false)
                 {
                     _data.Add(item);
-                    listItemView.Find(e => e.GetData().itemType == item.itemType).SetData(item);
+                    ItemView itemView = listItemView.Find(e => e.GetData().itemType == item.itemType);
+                    if (itemView != null)
+                    {
+                        itemView.SetData(item);
+                    }
                 }
             }
         }
@@ -54,7 +58,7 @@ public class CarriesItemController : MonoBehaviour
                 itemType = _sprites[i].name,
                 isCarried = false
             };
-            _data.Add(newItem);
+            // _data.Add(newItem);
             ItemView item = Instantiate(itemCarriedPrefab, transform);
             listItemView.Add(item);
             item.SetData(newItem);
@@ -70,8 +74,7 @@ public class CarriesItemController : MonoBehaviour
 
     public void AddItem(Item item)
     {
-        Item itemPos = _data.Find(e => e.itemType == item.itemType);
-        ItemView xxx = listItemView.Find(e => e.GetData().itemType == itemPos.itemType);
+        ItemView xxx = listItemView.Find(e => e.GetData().itemType == item.itemType);
 
         //replace item if it's the same type
         if (xxx.GetData().itemName.Any(c => char.IsDigit(c))) _scrollerController.AddItem(xxx.GetData());
@@ -81,13 +84,12 @@ public class CarriesItemController : MonoBehaviour
 
     public void RemoveItem(Item item)
     {
-        Item itemPos = _data.Find(e => e.itemType == item.itemType);
-        ItemView xxx = listItemView.Find(e => e.GetData().itemType == itemPos.itemType);
+        ItemView xxx = listItemView.Find(e => e.GetData().itemType == item.itemType);
         Item newItem = new Item()
         {
             itemID = 0,
-            itemName = itemPos.itemType,
-            itemType = itemPos.itemType,
+            itemName = item.itemType,
+            itemType = item.itemType,
             isCarried = false
         };
         xxx.SetData(newItem);

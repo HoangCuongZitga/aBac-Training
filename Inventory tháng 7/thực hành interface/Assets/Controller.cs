@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -33,7 +34,6 @@ public class Controller : MonoBehaviour
 
     void ShowPopup(Item item)
     {
-        Debug.Log(item.itemName);
         _popup.ShowItemIsChoosing(item);
     }
 
@@ -41,6 +41,7 @@ public class Controller : MonoBehaviour
     {
         _scrollerController.RemoveItem(item);
         _carriesItemController.AddItem(item);
+        _database.AddItem(item);
         SaveData();
     }
 
@@ -48,6 +49,8 @@ public class Controller : MonoBehaviour
     {
         _scrollerController.AddItem(item);
         _carriesItemController.RemoveItem(item);
+        _database.RemoveItem(item);
+        SaveData();
     }
 
     void LoadData()
@@ -55,18 +58,20 @@ public class Controller : MonoBehaviour
         string data = PlayerPrefs.GetString("database");
         if (data == "")
         {
+            Debug.Log("Không có data");
             _database = new PlayerInventory();
+            _database.data.listItemsAreCarried = new List<Item>();
+            _database.data.listItemsAreNotCarried = new List<Item>();
             return;
         }
 
-        _database = JsonConvert.DeserializeObject<PlayerInventory>(data);
+        // _database = JsonConvert.DeserializeObject<PlayerInventory>(data);
+        _database = new PlayerInventory();
+        Debug.Log(data);
     }
 
     void SaveData()
     {
-        // _database.data.listItemsAreCarried = _carriesItemController.GetItemIsCarried();
-        // _database.data.listItemsAreNotCarried = _scrollerController.GetItemIsNotCarried();
-
         _database.Save();
     }
 }

@@ -28,7 +28,7 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
     void LoadData()
     {
         // load data from database
-        if (_database.data.listItemsAreNotCarried != null)
+        if (_database.data.listItemsAreNotCarried.Count != 0)
         {
             _data = _database.data.listItemsAreNotCarried;
             return;
@@ -84,6 +84,7 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
         _data.Add(item);
         StartCoroutine(ReloadData(item));
     }
+    
 
     public void SetDatabase(PlayerInventory database)
     {
@@ -109,14 +110,14 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
         return cellView;
     }
 
-    public List<Item> GetItemIsNotCarried()
-    {
-        List<Item> itemsAreNotCarried = new List<Item>();
-
-        _data.ForEach(e =>
-        {
-            if (e.isCarried == false) itemsAreNotCarried.Add(e);
-        });
-        return itemsAreNotCarried;
-    }
+    // public List<Item> GetItemIsNotCarried()
+    // {
+    //     List<Item> itemsAreNotCarried = new List<Item>();
+    //
+    //     _data.ForEach(e =>
+    //     {
+    //         if (e.isCarried == false) itemsAreNotCarried.Add(e);
+    //     });
+    //     return itemsAreNotCarried;
+    // }
 }

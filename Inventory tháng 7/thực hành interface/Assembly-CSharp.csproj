@@ -73,7 +73,6 @@
      <Compile Include="Assets\EnhancedScroller v2\Demos\03 Selection Demo\SelectionDemo.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\02 Multiple Cell Types\CellViewHeader.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\PlayWin.cs" />
-     <Compile Include="Assets\DataManager.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\05 Remote Resources\Data.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\08 View Driven Cell Sizes\Data.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Plugins\EnhancedScrollerCellView.cs" />
@@ -92,6 +91,7 @@
      <Compile Include="Assets\EnhancedScroller v2\Demos\10 Grid Simulation\Data.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\SlotController.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\02 Multiple Cell Types\CellView.cs" />
+     <Compile Include="Assets\Scripts\Test Playerefs\ControllerPlayerRefs.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\12 Nested Scrollers\ScrollRectEx.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\10 Grid Simulation\RowCellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\SlotData.cs" />
@@ -111,7 +111,6 @@
      <Compile Include="Assets\EnhancedScroller v2\Demos\11 Pull Down Refresh\CellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\03 Selection Demo\InventoryCellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\10 Grid Simulation\CellView.cs" />
-     <Compile Include="Assets\Scripts\Test Playerefs\ControllerPlayerRefs.cs" />
      <None Include="Assets\EnhancedScroller v2\upgrading from 1.x to 2.x.txt" />
      <None Include="Assets\EnhancedScroller v2\ChangeLog.txt" />
      <None Include="Assets\EnhancedScroller v2\Tutorials\readme.txt" />

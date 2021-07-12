@@ -8,12 +8,10 @@ using UnityEngine.UI;
 public class Popup : MonoBehaviour
 {
     [SerializeField] private ItemView _itemView;
-
     [SerializeField] private Button equipBtn;
     [SerializeField] private Button UnEquipBtn;
 
     private Item itemIsChoosing;
-
     private Action<Item> equipMothod;
     private Action<Item> unEquipMothod;
 
@@ -63,6 +61,7 @@ public class Popup : MonoBehaviour
 
     public void ShowItemIsChoosing(Item item)
     {
+        // if item is a holding blue box : return
         if (item.itemName.Any(c => char.IsDigit(c)) == false) return;
         itemIsChoosing = item;
         _itemView.SetData(item);
