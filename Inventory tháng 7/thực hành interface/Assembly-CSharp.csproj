@@ -53,18 +53,18 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\EnhancedScroller v2\Plugins\SmallList.cs" />
-     <Compile Include="Assets\Scripts\PlayerInventory.cs" />
+     <Compile Include="Assets\Scripts\Inventory\PlayerInventory.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\01 Simple Demo\SimpleDemo.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\Main Menu\MainMenu.cs" />
-     <Compile Include="Assets\Scripts\Controller.cs" />
+     <Compile Include="Assets\Scripts\Inventory\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\10 Grid Simulation\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\12 Nested Scrollers\DetailCellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\04 Jump To Demo\CellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\11 Pull Down Refresh\Data.cs" />
-     <Compile Include="Assets\Scripts\CarriesItemController.cs" />
+     <Compile Include="Assets\Scripts\Inventory\CarriesItemController.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Plugins\EnhancedScroller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\02 Multiple Cell Types\Data.cs" />
-     <Compile Include="Assets\Scripts\Item.cs" />
+     <Compile Include="Assets\Scripts\Inventory\Item.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\SnappingDemo.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\07 Refreshing\CellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\01 Simple Demo\CellView.cs" />
@@ -79,7 +79,7 @@
      <Compile Include="Assets\EnhancedScroller v2\Demos\02 Multiple Cell Types\CellViewFooter.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\12 Nested Scrollers\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\12 Nested Scrollers\DetailData.cs" />
-     <Compile Include="Assets\Scripts\ScrollerController.cs" />
+     <Compile Include="Assets\Scripts\Inventory\ScrollerController.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\Main Menu\ReturnToMainMenu.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\04 Jump To Demo\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\05 Remote Resources\CellView.cs" />
@@ -97,9 +97,9 @@
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\SlotData.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\07 Refreshing\Controller.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\12 Nested Scrollers\MasterData.cs" />
-     <Compile Include="Assets\Scripts\ItemView.cs" />
+     <Compile Include="Assets\Scripts\Inventory\ItemView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\06 Snapping\SlotCellView.cs" />
-     <Compile Include="Assets\Scripts\Popup.cs" />
+     <Compile Include="Assets\Scripts\Inventory\Popup.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\09 Cell Events\Data.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\08 View Driven Cell Sizes\CellView.cs" />
      <Compile Include="Assets\EnhancedScroller v2\Demos\02 Multiple Cell Types\MultipleCellTypesDemo.cs" />
