@@ -23,18 +23,20 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
         LoadData();
         myScroller.Delegate = this;
         myScroller.ReloadData();
+
     }
 
     void LoadData()
     {
-            foreach (Item item in _database.data.listItemsAreNotCarried)
-            {
-             _data.Add(item);
-            }
-            myScroller.ReloadData();
+        foreach (Item item in _database.data.listItemsAreNotCarried)
+        {
+            _data.Add(item);
+        }
+
+        myScroller.ReloadData();
     }
 
-    
+
     IEnumerator ReloadData(Item item)
     {
         yield return new WaitForEndOfFrame();
@@ -55,8 +57,9 @@ public class ScrollerController : MonoBehaviour, IEnhancedScrollerDelegate
     public void RemoveItem(Item item)
     {
         item.isCarried = true;
-        _data.Remove(item);
-        StartCoroutine(ReloadData(item));
+        Item itemMustRemove = _data.Find(e => e.itemID == item.itemID);
+        _data.Remove(itemMustRemove);
+          StartCoroutine(ReloadData(item));
     }
 
     public void AddItem(Item item)

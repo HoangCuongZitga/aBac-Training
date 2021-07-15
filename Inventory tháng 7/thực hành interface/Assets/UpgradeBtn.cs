@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using EnhancedScrollerDemos.SelectionDemo;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class UpgradeBtn : MonoBehaviour
 {
@@ -25,14 +25,15 @@ public class UpgradeBtn : MonoBehaviour
     {
         _itemUpgradePreview.HideButton();
         listItemForUpgrading = new List<Item>();
-        TurnOnTurnOffUpgradeBtn();
+        TurnOnUpgradeCondition();
         upgradeBtn.onClick.AddListener(() => { upgradeBtnOnClick.Invoke(listItemForUpgrading); });
     }
 
     // ................................... PRIVATE METHODS ....................................
-    private void TurnOnTurnOffUpgradeBtn()
+    public void TurnOnUpgradeCondition()
     {
-        if (listItemForUpgrading.Count == 3)
+        if (listItemForUpgrading.Count == 3 && AllItemAreTheSameType(listItemForUpgrading) &&
+            listItemForUpgrading[0].itemLevel <= 3)
         {
             upgradeBtn.enabled = true;
             upgradeBtn.GetComponent<Image>().color = showMode;
@@ -46,18 +47,36 @@ public class UpgradeBtn : MonoBehaviour
 //        Debug.Log(listItemForUpgrading.Count);
     }
 
-    public Item UpgradeItem(List<Item> listItem)
+    public Item CreateUpgradeItem(List<Item> listItem)
     {
-        int random = Random.Range(0, listItem.Count - 1);
-        Item newItemUpgraded = listItem[random];
+        string fullName = listItem[0].itemName;
+        string type = fullName.Substring(0, fullName.Length - 1);
+        int level = Int32.Parse(fullName[fullName.Length - 1].ToString());
 
-        int newLevel = 0;
-        listItem.ForEach(e => { newLevel += e.itemLevel; });
-        newItemUpgraded.itemLevel = newLevel;
+        Item newItem = new Item()
+        {
+            itemID = listItem[0].itemID,
+            isCarried = false,
+            itemName = type + (level + 1),
+            itemLevel = level + 1,
+            itemType = type,
+        };
+        _itemUpgradePreview.SetData(newItem);
+        listItemForUpgrading.Clear();
+        TurnOnUpgradeCondition();
+        return newItem;
+    }
 
-        _itemUpgradePreview.SetData(newItemUpgraded);
+    private bool AllItemAreTheSameType(List<Item> list)
+    {
+        if (list.Count == 0) return false;
+        string type = list[0].itemName;
+        foreach (Item item in list)
+        {
+            if (type != item.itemName) return false;
+        }
 
-        return newItemUpgraded;
+        return true;
     }
 
     // ................................... PUBLIC METHODS ....................................
@@ -65,13 +84,13 @@ public class UpgradeBtn : MonoBehaviour
     {
         if (listItemForUpgrading.Count == 3) return;
         listItemForUpgrading.Add(item);
-        TurnOnTurnOffUpgradeBtn();
+        TurnOnUpgradeCondition();
     }
 
 
     public void RemoveItemForUpgrading(Item item)
     {
         if (listItemForUpgrading.Contains(item)) listItemForUpgrading.Remove(item);
-        TurnOnTurnOffUpgradeBtn();
+        TurnOnUpgradeCondition();
     }
 }

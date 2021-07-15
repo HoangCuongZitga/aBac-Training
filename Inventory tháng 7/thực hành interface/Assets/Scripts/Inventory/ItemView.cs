@@ -32,9 +32,9 @@ public class ItemView : EnhancedScrollerCellView
         itemData = item;
         itemName.text = item.itemName;
         itemID.text = "ID " + item.itemID;
-        itemLevel.text = "Level " + item.itemLevel;
+        itemLevel.text = "Rarity " + item.itemLevel;
         //  change type if ...
-        if (item.itemName.Any(c => char.IsDigit(c))) itemImage.sprite = Resources.Load<Sprite>("Item_Prototype2/" + item.itemName);
+        if (item.itemName.Length > 3) itemImage.sprite = Resources.Load<Sprite>("Item_Prototype2/" + item.itemName);
         else itemImage.sprite = Resources.Load<Sprite>("Equipped/" + item.itemName);
     }
 
@@ -47,6 +47,7 @@ public class ItemView : EnhancedScrollerCellView
     {
         itemButton.enabled = false;
     }
+
     public void ShowButton()
     {
         itemButton.enabled = true;

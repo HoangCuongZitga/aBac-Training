@@ -7,13 +7,14 @@ using UnityEngine;
 
 public class CarriesItemController : MonoBehaviour
 {
-    [SerializeField] private ScrollerController _scrollerController;
+    [SerializeField] internal ScrollerController _scrollerController;
     [SerializeField] private ItemView itemCarriedPrefab;
-    private List<Item> _data;
-    private List<ItemView> listItemView;
-    private List<Sprite> _sprites;
-    private PlayerInventory _database;
-    private Action<Item> ItemOnClickDelegate;
+    internal List<Item> _data;
+    internal List<ItemView> listItemView;
+    internal List<Sprite> _sprites;
+    internal PlayerInventory _database;
+    internal Action<Item> ItemOnClickDelegate;
+
 
 //....................................... PRIVATE METHODS .......................................
     private void Start()
@@ -21,6 +22,10 @@ public class CarriesItemController : MonoBehaviour
         _data = new List<Item>();
         listItemView = new List<ItemView>();
         LoadData();
+
+        //
+        // string xxxx = "3003";
+        // Debug.Log(xxxx[xxxx.Length - 1].ToString() + 1);
     }
 
     void LoadData()
@@ -70,24 +75,51 @@ public class CarriesItemController : MonoBehaviour
     }
 
 //....................................... PUBLIC METHODS .......................................
-    public void SetItemOnClickDelegate(Action<Item> method)
+    public  void SetItemOnClickDelegate(Action<Item> method)
     {
         ItemOnClickDelegate = method;
     }
 
-    public void AddItem(Item item)
+    public virtual bool AddItem(Item item)
     {
-        ItemView xxx = listItemView.Find(e => e.GetData().itemType == item.itemType);
-
+        ItemView itemTypePos = listItemView.Find(e => e.GetData().itemType == item.itemType);
         //replace item if it's the same type
-        if (xxx.GetData().itemName.Any(c => char.IsDigit(c))) _scrollerController.AddItem(xxx.GetData());
-        xxx.SetData(item);
-        xxx.ShowButton();
+        if (itemTypePos.GetData().itemName.Length > 3) _scrollerController.AddItem(itemTypePos.GetData());
+        itemTypePos.SetData(item);
+        itemTypePos.ShowButton();
+        return true;
+    }
+
+    // ItemView Mode(Item item, string mode)
+    // {
+    //     if (CountTheItemIsCarried() == 3) return null;
+    //
+    //     if (mode == "fuse")
+    //     {
+    //         ItemView itemTypePos = listItemView.Find(e => e.GetData().itemName.Length == 3);
+    //         if (itemTypePos != null) return itemTypePos;
+    //         return listItemView[0];
+    //     }
+    //
+    //     if (mode == "popup")
+    //     {
+    //         ItemView itemTypePos = listItemView.Find(e => e.GetData().itemType == item.itemType);
+    //         return itemTypePos;
+    //     }
+    //
+    //     return null;
+    // }
+
+    int CountTheItemIsCarried()
+    {
+        var xx = listItemView.Where(e => e.GetData().itemName.Length > 3).ToList();
+
+        return xx.Count;
     }
 
     public void RemoveItem(Item item)
     {
-        ItemView xxx = listItemView.Find(e => e.GetData().itemType == item.itemType);
+        ItemView xxx = listItemView.Find(e => e.GetData().itemID == item.itemID);
         if (xxx == null) return;
         Item newItem = new Item()
         {
@@ -103,7 +135,19 @@ public class CarriesItemController : MonoBehaviour
 
     public void RemoveListItems(List<Item> listitem)
     {
-        listitem.ForEach(e => { RemoveItem(e); });
+        Item newItem = new Item()
+        {
+            itemID = 0,
+            itemName = listitem[0].itemType,
+            itemType = listitem[0].itemType,
+            isCarried = false,
+            itemLevel = 0
+        };
+        listItemView.ForEach(e =>
+        {
+            e.SetData(newItem);
+            e.HideButton();
+        });
     }
 
     public void SetDatabase(PlayerInventory database)

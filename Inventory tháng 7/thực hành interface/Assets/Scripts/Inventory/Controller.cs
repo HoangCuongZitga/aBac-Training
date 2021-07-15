@@ -14,7 +14,7 @@ public class Controller : MonoBehaviour
     [SerializeField] internal PlayerInventory _database;
 
 
-    private void Awake()
+    public virtual void Awake()
     {
         LoadData();
         SetDatabase();
@@ -22,7 +22,7 @@ public class Controller : MonoBehaviour
         _carriesItemController.SetItemOnClickDelegate(ShowPopup);
         _popup.SetEquipMethod(Equip);
         _popup.SetUnEquipMethod(UnEquip);
-    }
+    }    
 
 
     // ................................ DELEGATE METHODS ..................................
